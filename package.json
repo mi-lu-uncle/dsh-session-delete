@@ -1,0 +1,49 @@
+{
+  "name": "@mi-lu-uncle/dsh-session-delete",
+  "version": "1.0.0",
+  "description": "DSH community plugin: add a permanent \"Delete session\" action to the session menu (DSH only ships archive).",
+  "author": "milu",
+  "license": "MIT",
+  "repository": "https://github.com/mi-lu-uncle/dsh-session-delete",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "session",
+    "delete",
+    "plugin"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    },
+    "compatibility": {
+      "dshReleases": {
+        "0.2.0-rc.2": "compatible"
+      }
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.4",
+    "react": "^18.2.0"
+  }
+}

@@ -1,0 +1,6 @@
+# Bundle patch layer: the row loads this package's main entry as one host
+# plugin (a plain Cordis plugin). The client half is wired through the
+# package's `dsh.client` field, so nothing client-side is inserted here.
+- insert:
+    - id: session-delete
+      name: '@mi-lu-uncle/dsh-session-delete'
