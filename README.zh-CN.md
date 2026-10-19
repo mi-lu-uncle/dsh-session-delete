@@ -25,7 +25,7 @@ DSH 0.2.0-rc.2 只提供了**归档**（软删除：隐藏但保留全部数据�
 
 ## 安装
 
-本插件面向 DSH `0.2.0-rc.2`，以本地目录方式链接进 `desktop` profile：
+本插件面向 DSH `0.2.0-rc.2` 及更新的 `0.2.x`（当前在 `0.2.1-rc.2` 上验证），以本地目录方式链接进 `desktop` profile：
 
 ```sh
 dsh plugin --profile desktop add "link:/绝对路径/dsh-session-delete"

@@ -25,7 +25,7 @@ DSH `0.2.0-rc.2` only ships **archive** (a soft delete: hidden, but all data is 
 
 ## Install
 
-This plugin targets DSH `0.2.0-rc.2` and is linked into the `desktop` profile as a local directory:
+This plugin targets DSH `0.2.0-rc.2` and newer `0.2.x` releases (currently verified on `0.2.1-rc.2`), and is linked into the `desktop` profile as a local directory:
 
 ```sh
 dsh plugin --profile desktop add "link:/absolute/path/dsh-session-delete"

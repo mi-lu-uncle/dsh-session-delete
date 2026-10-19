@@ -25,7 +25,7 @@ DSH `0.2.0-rc.2` には**アーカイブ**（ソフト削除：非表示にな�
 
 ## インストール
 
-本プラグインは DSH `0.2.0-rc.2` 向けで、ローカルディレクトリとして `desktop` プロファイルにリンクします：
+本プラグインは DSH `0.2.0-rc.2` 以降の `0.2.x`（現在は `0.2.1-rc.2` で検証済み）向けで、ローカルディレクトリとして `desktop` プロファイルにリンクします：
 
 ```sh
 dsh plugin --profile desktop add "link:/absolute/path/dsh-session-delete"
