@@ -1,6 +1,6 @@
 {
   "name": "@mi-lu-uncle/dsh-session-delete",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DSH community plugin: add a permanent \"Delete session\" action to the session menu (DSH only ships archive).",
   "author": "milu",
   "license": "MIT",
@@ -38,7 +38,8 @@
     },
     "compatibility": {
       "dshReleases": {
-        "0.2.0-rc.2": "compatible"
+        "0.2.0-rc.2": "compatible",
+        "0.2.1-rc.2": "compatible"
       }
     }
   },
