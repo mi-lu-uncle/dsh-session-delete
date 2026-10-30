@@ -15,7 +15,7 @@ DSH `0.2.0-rc.2` only ships **archive** (a soft delete: hidden, but all data is 
   2. The projection cache: `~/.dsh/storages/session_projcache/sessions/<session-id>.json`
   3. The session's registration in the workspace index (`sessionIds` / archive / pin marks)
 - After a successful delete, the open UI **needs no refresh** — the row disappears via the `api-session/removed` event.
-- **Auto-repairs the default workspace**: DSH's built-in "Delete workspace", if it ever deleted the default one, leaves dangling pointers — its sessions fall into "Ungrouped" and new sessions can no longer be created. On startup this plugin rebuilds the registration and re-homes the sessions **for the default workspace only** (identified via `defaultWorkspaceId` or the last remembered path). Other workspaces you deleted on purpose are not "revived".
+- **Rebuilds the default workspace registration**: If the default workspace was deleted, the plugin recreates its registration using `defaultWorkspaceId` or the last remembered path and attempts to reattach its sessions. It leaves other deleted workspaces alone. DSH 0.2.1-rc.2 exposes no public API to reset a dangling `defaultWorkspaceId`, so this cannot guarantee full restoration of default-workspace behavior.
 
 ## Safety
 

@@ -73,11 +73,40 @@ test('deletes an idle (attached-but-quiet) session: files, cache, registry, even
   assert.deepEqual(calls.emitted, [['api-session/removed', SID]]);
 });
 
-test('a failing activity reporter does not block a delete', async () => {
-  const { base } = makeFixture();
-  const { ctx } = mockCtx({ activityThrows: true });
+test('a failing activity reporter refuses deletion without touching the session', async () => {
+  const { base, sessionDir, cacheFile } = makeFixture();
+  const { ctx, calls } = mockCtx({ activityThrows: true });
   const result = await performDelete(ctx, SID, base);
-  assert.equal(result.ok, true);
+  assert.equal(result.ok, false);
+  assert.match(result.error, /无法确认会话.*状态/);
+  assert.ok(existsSync(sessionDir));
+  assert.ok(existsSync(cacheFile));
+  assert.equal(calls.detach, 0);
+  assert.equal(calls.emitted.length, 0);
+});
+
+test('refuses deletion when the activity check is unavailable', async () => {
+  const { base, sessionDir } = makeFixture();
+  const { ctx, calls } = mockCtx();
+  delete ctx.waterfall;
+  const result = await performDelete(ctx, SID, base);
+  assert.equal(result.ok, false);
+  assert.match(result.error, /无法确认会话.*状态/);
+  assert.ok(existsSync(sessionDir));
+  assert.equal(calls.detach, 0);
+});
+
+test('refuses deletion when the activity check returns an invalid result', async () => {
+  for (const result of [null, undefined, {}]) {
+    const { base, sessionDir } = makeFixture();
+    const { ctx, calls } = mockCtx();
+    ctx.waterfall = async () => result;
+    const deletion = await performDelete(ctx, SID, base);
+    assert.equal(deletion.ok, false);
+    assert.match(deletion.error, /无法确认会话.*状态/);
+    assert.ok(existsSync(sessionDir));
+    assert.equal(calls.detach, 0);
+  }
 });
 
 test('reports a missing session cleanly', async () => {
